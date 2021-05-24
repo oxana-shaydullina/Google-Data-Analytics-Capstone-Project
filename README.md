@@ -64,9 +64,9 @@ Data passess the <b>ROCCC</b> test with a score of 4+/5:</br>
     <b>C</b>ited — yes, as it's known where the data is retrieved from.</br>
   
 ## Processing
-Excel/Google Sheets are probably the wrong tool for this task. Excel is limited to just over 1 million rows and Google Sheets stops at 150k. SQL seems like a better choice, but since I'm going to create final visualizations to share my findings and effectively communicate to the executive team, a separate tool is needed. 
+Excel/Google Sheets are probably not the best tool for this task. Excel is limited to just over 1 million rows and Google Sheets stops at 150k. SQL seems like a better choice, but since I'm going to create final visualizations to share my findings and effectively communicate to the executive team, a separate tool is needed. 
 
-Hence the choices of tool are between R and Tableau. While R is great for doing comprehensive data analysis, Tableau Desktop is much easier to process and analyze the data, especially coupled with Prep Builder. It also produces the most compelling and sophisticated vizzes. 
+So the choices of tool are between R and Tableau. While R is great for doing comprehensive data analysis, Tableau Desktop is much easier to process and analyze the data, especially coupled with Prep Builder. It also produces the most compelling and sophisticated vizzes. 
 
 
 
