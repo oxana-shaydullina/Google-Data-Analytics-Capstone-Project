@@ -16,6 +16,10 @@ annual memberships.
     - Customers who purchase single-ride or full-day passes are referred to as <b>casual riders</b></br>
     - Customers who purchase annual memberships are <b>Cyclistic members</b></br>
 
+#### =============
+#### PHASE 1: ASK
+#### =============
+
 ## Business Task
 <p>Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the
 pricing flexibility helps Cyclistic attract more customers, <b>Moreno believes that maximizing the number of annual members will be
@@ -49,6 +53,10 @@ Cyclistic’s mission and business goals — as well as how I, as a junior data 
 - <b>Cyclistic executive team</b>: The notoriously detail-oriented executive team will decide whether to approve the
 recommended marketing program.
 
+#### =================
+#### PHASE 2: PREPARE
+#### =================
+
 ## Sources
 The data source used for analysis: previous 12 months (May 2020 to April 2021) of [Cyclistic’s historical trip data](https://divvy-tripdata.s3.amazonaws.com/index.html). The datasets have a different name because Cyclistic is a fictional company. The data has been made available by Motivate International Inc. under this [license](https://www.divvybikes.com/data-license-agreement). This is a public data that can be used to explore how different customer types are using Cyclistic bikes. However, using riders’ personally identifiable information is prohibited, meaning 
 that it's not possible to connect pass purchases to credit card numbers to determine if casual riders live in the Cyclistic service
@@ -63,11 +71,58 @@ Data passess the <b>ROCCC</b> test with a score of 4+/5:</br>
     <b>C</b>urrent — yes, as the data is available till the last month of the current year, so it's up to date.</br>
     <b>C</b>ited — yes, as it's known where the data is retrieved from.</br>
   
-## Processing
-Excel/Google Sheets are probably not the best tool for this task. Excel is limited to just over 1 million rows and Google Sheets stops at 150k. SQL seems like a better choice, but since I'm going to create final visualizations to share my findings and effectively communicate to the executive team, a separate tool is needed. 
+#### =================
+#### PHASE 3: PROCESS
+#### =================  
+  
+## Tools
+There are more than 1 million rows in total so Excel/Google Sheets are probably not the best tool for this task. Excel is limited to just over 1 million rows and Google Sheets stops at 150k. SQL seems like a better choice, but since I'm going to create final visualizations to share my findings and effectively communicate to the executive team, a separate tool would be needed. 
 
 So the choices of tool are between R and Tableau. While R is great for doing comprehensive data analysis, Tableau Desktop is much easier to process and analyze the data, especially coupled with Prep Builder. It also produces the most compelling and sophisticated vizzes. 
 
+Let's rock that data!
+
+## Wrangle data and combine into a single file
+
+Upload 12 datasets into Prep Builder. 
+
+Add a clean step in Prep Builder for each of csv files.
+
+Observe there are 13 columns in each of them:</br>
+| ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual
+|---|---|---|---|---|---|---|---|---|---|---|---|---|</br>
+
+Inspect each csv file to find possible discrepances.
+
+Compare the columns names and data types; as they are consistent, create a union to combine data into a single source for further investigation.
+
+What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field within a dataset. Percentage of null varies from month to month:
+
+| May | Jun | Jul | Aug | Sep | Oct | Nov | Dec | Jan | Feb | Mar | Apr |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| <1% | <1% | <1% | 2%  | 4%  | 9%  | 10% | 10% | 11% | 11% | 7%  | 8%  |
+
+
+
+
+
+
+
+--Seperating Date, Month, Year & Day for better data aggregation
+Adding a "ride_length" calculation to all_trips (in seconds)
+Calculating the average ride time by each day for members vs casual users
+
+#### =================
+#### PHASE 4: ANALYZE
+#### =================  
+
+#### ===============
+#### PHASE 5: SHARE
+#### ===============
+
+#### =============
+#### PHASE 6: ACT
+#### =============
 
 
 ## 4. Analyze: Data exploration, visualization, and analysis
