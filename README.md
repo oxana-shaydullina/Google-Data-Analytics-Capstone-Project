@@ -107,7 +107,7 @@ Create a union using <b>Wildcard</b>: in the <b>Input</b> pane select the <b>Mul
 
 Add a Clean step.
 
-Inspect newly created union to find possible discrepances.
+Inspect union to find possible discrepances.
 
 What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field in `start_station_name`, `start_station_id`, `end_station_name`, and `end_station_id` fields: from 149K to 171K rows. 
 
@@ -115,7 +115,26 @@ What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the ab
 
 However, it's up to 5% of total 4M rows. Such amount of missing values is not high enough to skew analysis, so go ahead and filter out particular rows with nulls, since it does not have a high weightage on the dataset.
 
-Add an Output step and save the dataset in hyper format.
+Since it's bike trips data, calculate the duration and the distance for each trip as it is not in the dataset.
+
+Add the following calculated fields: 
+
+`trip_duration_in_hrs` using `DATEDIFF('hour',[started_at],[ended_at])`
+
+`trip_duration_in_min` using `DATEDIFF('minute',[started_at],[ended_at])`
+
+`started_at_weekday` using `DATENAME('weekday',[started_at])`
+
+`trip_distance` using `ROUND(DISTANCE(MAKEPOINT([start_lat],[start_lng]),MAKEPOINT([end_lat],[end_lng]),"km"),1)`
+
+Observe newly created fields for standing out values. Exclude negative values as a trip cannot have a negative duration:
+
+<img width="413" alt="Screenshot 2021-05-26 at 18 30 43" src="https://user-images.githubusercontent.com/63780030/119688249-7dabbc00-be50-11eb-83b9-732093b39293.png">
+
+`speeed_in_kmph` using `[trip_distance_in_km]/[trip_duration_in_hrs]`
+
+
+Add an Output step and save the dataset in .hyper format.
 
 Now open this extract in Tableau desktop.
 
