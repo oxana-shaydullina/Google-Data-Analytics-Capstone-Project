@@ -90,11 +90,9 @@ Unzip the files.
 
 Create a folder on your desktop or Drive to house the files. Check appropriate file naming conventions: it should describe the content, creation date, and version of a file in its name. Rename 202104-divvy-tripdata.csv to 202104_Cyclistic_tripdata_v1.csv. Repeat for the rest of the files.
 
-Create subfolders for the .CSV files so that you have a copy of the original data. Move the downloaded files to the appropriate subfolder.
+Create subfolders for the csv files so that there is a copy of the original data. Move the downloaded files to the appropriate subfolder.
 
-Upload 12 datasets into Prep Builder. 
-
-Add a clean step for each of csv files.
+Upload 12 csv files into Prep Builder. 
 
 Observe there are 13 columns in each of them:
 
@@ -105,20 +103,21 @@ Observe there are 13 columns in each of them:
 
 Compare the columns names and data types; as they are consistent, a union can be created to combine data into a single source for further investigation.
 
-Inspect each csv file to find possible discrepances.
+Create a union using <b>Wildcard</b>: in the <b>Input</b> pane select the <b>Multiple Files</b> tab, and then select <b>Wildcard</b> union. Leave <b>Matching Pattern</b> blanc, so all csv files are included. Make sure you use all data instead of sample amount: in the <b>Input</b> pane select <b>Data Sample</b> tab and click <b>Use all data</b> radio button.
 
-What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field within a dataset. Percentage of null varies from month to month:
+Add a Clean step.
 
-| May | Jun | Jul | Aug | Sep | Oct | Nov | Dec | Jan | Feb | Mar | Apr |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| <1% | <1% | <1% | 2%  | 4%  | 9%  | 10% | 10% | 11% | 11% | 7%  | 8%  |
+Inspect newly created union to find possible discrepances.
 
+What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field in `start_station_name`, `start_station_id`, `end_station_name`, and `end_station_id` fields: from 149K to 171K rows. 
 
-<img width="632" alt="Screenshot 2021-05-25 at 18 18 47" src="https://user-images.githubusercontent.com/63780030/119523721-a74be100-bd85-11eb-8756-cbecee3c469b.png">
+<img width="827" alt="Screenshot 2021-05-26 at 16 54 49" src="https://user-images.githubusercontent.com/63780030/119673812-5949e280-be44-11eb-8c40-fbf08a2214b9.png">
 
-Since those nulls only appear in `start_station_name`, `start_station_id`, `end_station_name`, and `end_station_id` which are not numeric fileds, replacing it with calculated values doesn't seem possible. 
+However, it's up to 5% of total 4M rows. Such amount of missing values is not high enough to skew analysis, so go ahead and filter out particular rows with nulls, since it does not have a high weightage on the dataset.
 
-Even maximum of 11% of missing values is not high enough to skew analysis, so I decided to filter out particular rows with nulls, since it does not have a high weightage on the datasets.
+Add an Output step and save the dataset in hyper format.
+
+Now open this extract in Tableau desktop.
 
 
 
