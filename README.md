@@ -86,15 +86,18 @@ Let's rock that data!
 
 Upload 12 datasets into Prep Builder. 
 
-Add a clean step in Prep Builder for each of csv files.
+Add a clean step for each of csv files.
 
-Observe there are 13 columns in each of them:</br>
-| ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual
-|---|---|---|---|---|---|---|---|---|---|---|---|---|</br>
+Observe there are 13 columns in each of them:
+
+
+| ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual |
+|---------|---------------|------------|----------|--------------------|------------------|------------------|----------------|-----------|-----------|---------|---------|---------------|
+
+
+Compare the columns names and data types; as they are consistent, a union can be created to combine data into a single source for further investigation.
 
 Inspect each csv file to find possible discrepances.
-
-Compare the columns names and data types; as they are consistent, create a union to combine data into a single source for further investigation.
 
 What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field within a dataset. Percentage of null varies from month to month:
 
@@ -103,6 +106,11 @@ What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the ab
 | <1% | <1% | <1% | 2%  | 4%  | 9%  | 10% | 10% | 11% | 11% | 7%  | 8%  |
 
 
+<img width="632" alt="Screenshot 2021-05-25 at 18 18 47" src="https://user-images.githubusercontent.com/63780030/119523721-a74be100-bd85-11eb-8756-cbecee3c469b.png">
+
+Since those nulls only appear in `start_station_name`, `start_station_id`, `end_station_name`, and `end_station_id` which are not numeric fileds, replacing it with calculated values doesn't seem possible. 
+
+Even maximum of 11% of missing values is not high enough to skew analysis, so I decided to filter out particular rows with nulls, since it does not have a high weightage on the datasets.
 
 
 
