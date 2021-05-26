@@ -84,6 +84,14 @@ Let's rock that data!
 
 ## Wrangle data and combine into a single file
 
+Download previous 12 months (May 2020 to April 2021) of [Cyclistic’s historical trip data](https://divvy-tripdata.s3.amazonaws.com/index.html).
+
+Unzip the files.
+
+Create a folder on your desktop or Drive to house the files. Check appropriate file naming conventions: it should describe the content, creation date, and version of a file in its name. Rename 202104-divvy-tripdata.csv to 202104_Cyclistic_tripdata_v1.csv. Repeat for the rest of the files.
+
+Create subfolders for the .CSV files so that you have a copy of the original data. Move the downloaded files to the appropriate subfolder.
+
 Upload 12 datasets into Prep Builder. 
 
 Add a clean step for each of csv files.
