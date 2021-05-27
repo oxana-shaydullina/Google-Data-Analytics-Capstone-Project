@@ -88,7 +88,7 @@ Download previous 12 months (May 2020 to April 2021) of [Cyclistic’s historica
 
 Unzip the files.
 
-Create a folder on your desktop or Drive to house the files. Check appropriate file naming conventions: it should describe the content, creation date, and version of a file in its name. Rename 202104-divvy-tripdata.csv to 202104_Cyclistic_tripdata_v1.csv. Repeat for the rest of the files.
+Create a folder on your desktop or Drive to house the files. Check appropriate file naming conventions: it should describe the content, creation date, and version of a file in its name. Rename `202104-divvy-tripdata.csv` to `202104_Cyclistic_tripdata_v1.csv`. Repeat for the rest of the files.
 
 Create subfolders for the csv files so that there is a copy of the original data. Move the downloaded files to the appropriate subfolder.
 
@@ -96,18 +96,30 @@ Upload 12 csv files into Prep Builder.
 
 Observe there are 13 columns in each of them:
 
-
-| ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual |
-|---------|---------------|------------|----------|--------------------|------------------|------------------|----------------|-----------|-----------|---------|---------|---------------|
+| Field name         | Field description                                            |
+|--------------------|--------------------------------------------------------------|
+| ride_id            | Primary Key                                                  |
+| rideable_type      | Type of bike: classic_bike, docked_bike, electric_bike       |
+| started_at         | Start date of the ride in a format mm/dd/yyyy hh:mm:ss AM/PM |
+| ended_at           | End date of the ride in a format mm/dd/yyyy hh:mm:ss AM/PM   |
+| start_station_name | Start station name                                           |
+| start_station_id   | Start station ID                                             |
+| end_station_name   | End station name                                             |
+| end_station_id     | End station ID                                               |
+| start_lat          | Start lattitude                                              |
+| start_lng          | Start longitude                                              |
+| end_lat            | End lattitude                                                |
+| end_lng            | End longitude                                                |
+| member_casual      | Type of rider: member, casual                                |
 
 
 Compare the columns names and data types; as they are consistent, a union can be created to combine data into a single source for further investigation.
 
 Create a union using <b>Wildcard</b>: in the <b>Input</b> pane select the <b>Multiple Files</b> tab, and then select <b>Wildcard</b> union. Leave <b>Matching Pattern</b> blanc, so all csv files are included. Make sure you use all data instead of sample amount: in the <b>Input</b> pane select <b>Data Sample</b> tab and click <b>Use all data</b> radio button.
 
-Add a Clean step.
+## Inspect dataset to look for incongruencies
 
-Inspect union to find possible discrepances.
+Add a Clean step.
 
 What catches the eye first is a considerable amount of <b>nulls</b>, i.e. the absence of a values in a data field in `start_station_name`, `start_station_id`, `end_station_name`, and `end_station_id` fields: from 149K to 171K rows. 
 
@@ -117,24 +129,74 @@ However, it's up to 5% of total 4M rows. Such amount of missing values is not hi
 
 Since it's bike trips data, calculate the duration and the distance for each trip as it is not in the dataset.
 
+Find how much time in minutes the rider needs to cover 1 km by counting their pace:
+
+`pace_min_km` using `ROUND([trip_duration_in_min]/[trip_distance_in_km],2)`
+
 Add the following calculated fields: 
+
+`trip_distance_in_km` using `ROUND(DISTANCE(MAKEPOINT([start_lat],[start_lng]),MAKEPOINT([end_lat],[end_lng]),"km"),2)`
 
 `trip_duration_in_hrs` using `DATEDIFF('hour',[started_at],[ended_at])`
 
 `trip_duration_in_min` using `DATEDIFF('minute',[started_at],[ended_at])`
 
+Find out the month for further analyzing seasonal pattern of the trips:
+
+`started_at_month` using `DATENAME('month',[started_at])`
+
+Find out the day of the week for further analyzing the trip pattern during weekdays:
+
 `started_at_weekday` using `DATENAME('weekday',[started_at])`
 
-`trip_distance` using `ROUND(DISTANCE(MAKEPOINT([start_lat],[start_lng]),MAKEPOINT([end_lat],[end_lng]),"km"),1)`
+Observe newly created fields for standing out values. 
 
-Observe newly created fields for standing out values. Exclude negative values as a trip cannot have a negative duration:
+Don't exclude nulls from `pace_min_km` field as the pace will be zero if the riders returned the bike to the same station because of zeros in `trip_distance_in_km` field (which is, again, calculated as a difference between geo coordinates):
 
-<img width="413" alt="Screenshot 2021-05-26 at 18 30 43" src="https://user-images.githubusercontent.com/63780030/119688249-7dabbc00-be50-11eb-83b9-732093b39293.png">
+<img width="407" alt="Screenshot 2021-05-27 at 13 23 26" src="https://user-images.githubusercontent.com/63780030/119810457-ba2df500-beee-11eb-81e2-8e834fc093bf.png">
 
-`speeed_in_kmph` using `[trip_distance_in_km]/[trip_duration_in_hrs]`
+Exclude negative values from `trip_duration_in_hrs` and `trip_duration_in_min` as a trip cannot have a negative duration:
+
+<img width="403" alt="Screenshot 2021-05-27 at 14 46 09" src="https://user-images.githubusercontent.com/63780030/119820580-48f43f00-befa-11eb-9eea-24865623b24c.png">
+
+Inspect dataset to find more possible discrepances.
+
+Some rides last enormous amount of time (more than 24 hours). It could be events when bikes were taken out of docks and checked for quality by Cyclistic, or just incorrectly collected data. Leave it as is.
+
+Groom and polish the dataset a bit more: rename `member_casual` field to `rider_type`
+
+At last, remove `File Path` column as it's automatically generated by Prep Builder and won't be needed for further analysis. 
+
+Observe the final structure of the dataset:
+
+| Field name           | Field description                                            |
+|----------------------|--------------------------------------------------------------|
+| pace_min_km          | Pace in min per km                                           |
+| trip_distance_in_km  | Ride distance in km                                          |
+| trip_duration_in_hrs | Ride duration in hours                                       |
+| trip_duration_in_min | Ride duration in minutes                                     |
+| started_at_month     | Start month of the ride                                      |
+| started_at_weekday   | Start weekday of the ride                                    |
+| ride_id              | Primary Key                                                  |
+| rideable_type        | Type of bike: classic_bike, docked_bike, electric_bike       |
+| started_at           | Start date of the ride in a format mm/dd/yyyy hh:mm:ss AM/PM |
+| ended_at             | End date of the ride in a format mm/dd/yyyy hh:mm:ss AM/PM   |
+| start_station_name   | Start station name                                           |
+| start_station_id     | Start station ID                                             |
+| end_station_name     | End station name                                             |
+| end_station_id       | End station ID                                               |
+| start_lat            | Start lattitude                                              |
+| start_lng            | Start longitude                                              |
+| end_lat              | End lattitude                                                |
+| end_lng              | End longitude                                                |
+| rider_type           | Type of rider: member, casual                                |
 
 
-Add an Output step and save the dataset in .hyper format.
+Add an Output step and save the dataset `202005-202104_Cyclistic tripdata_v2.hyper` into appropriate folder.
+
+#### =================
+#### PHASE 4: ANALYZE
+#### =================  
 
 Now open this extract in Tableau desktop.
 
@@ -142,13 +204,10 @@ Now open this extract in Tableau desktop.
 
 
 
---Seperating Date, Month, Year & Day for better data aggregation
-Adding a "ride_length" calculation to all_trips (in seconds)
+
 Calculating the average ride time by each day for members vs casual users
 
-#### =================
-#### PHASE 4: ANALYZE
-#### =================  
+
 
 #### ===============
 #### PHASE 5: SHARE
@@ -167,4 +226,4 @@ Calculating the average ride time by each day for members vs casual users
 
 
 
-
+All done! Congratulations! 🥳 
