@@ -1,13 +1,13 @@
 This analysis is the Case Study: 'How Does a Bike-Share Navigate Speedy Success?' from the [Google Data Analytics Certificate](http://grow.google/dataanalytics/), originally based on the case study ['Sophisticated, Clear, and Polished’: Divvy and Data Visualization](https://artscience.blog/home/divvy-dataviz-case-study) by Kevin Hartman.
 
-### Scenario
+## Scenario
 I am a junior data analyst working in the marketing analyst team at Cyclistic, a fictional bike-share company in Chicago. The director of
 marketing Lily Moreno believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my
 team wants to understand how casual riders and annual members use Cyclistic bikes dierently. From these insights, the team
 will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve
 my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
-### Background
+## Background
 - In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that
 are geotracked and locked into a network of 692 stations across Chicago.</br>
 - Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. One
@@ -39,7 +39,7 @@ Moreno has assigned me the first question to answer: <b>How do annual members an
 
 Answering the above question will help company understand the key differences in their customer behaviors and adapt the marketing strategy targetted towards casual members so that they can be converted into an annual members.
 
-### Key Stakeholders
+## Key Stakeholders
 - <b>Cyclistic</b>: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself
 apart by also oering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with
 disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8%
@@ -198,9 +198,9 @@ Add an Output step and save the dataset `202005-202104_Cyclistic tripdata_v2.hyp
 #### PHASE 4: ANALYZE
 #### =================  
 
-Now open this extract in Tableau desktop.
+Open the extract in Tableau desktop.
 
-
+Double check dataset and make neccesary adjustments: assign <b>Geographical Role: Longitude</b> to the fields `start_lng` and `end_lng`.
 
 
 
@@ -213,16 +213,13 @@ Calculating the average ride time by each day for members vs casual users
 #### PHASE 5: SHARE
 #### ===============
 
+Now create sophisticated and polished viz to share the findings. 
+
 #### =============
 #### PHASE 6: ACT
 #### =============
 
 
-## 4. Analyze: Data exploration, visualization, and analysis
-
-## 5. Share: Communicating and interpreting results
-
-## 6. Act: Putting your insights to work to solve the problem
 
 
 
