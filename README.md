@@ -189,7 +189,7 @@ Observe the final structure of the dataset:
 | start_lng            | Start longitude                                              |
 | end_lat              | End lattitude                                                |
 | end_lng              | End longitude                                                |
-| rider_type           | Type of rider: member, casual                                |
+| member_type          | Type of rider: member, casual                                |
 
 
 Add an Output step and save the dataset `202005-202104_Cyclistic tripdata_v2.hyper` into appropriate folder.
