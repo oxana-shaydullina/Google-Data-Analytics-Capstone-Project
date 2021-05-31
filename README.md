@@ -200,7 +200,7 @@ Add an Output step and save the dataset `202005-202104_Cyclistic tripdata_v2.hyp
 
 Open the dataset in Tableau desktop.
 
-Double check the dataset and make neccesary adjustments: assign <b>Geographical Role: Longitude</b> to the fields `start_lng` and `end_lng`.
+Double check the dataset and make necessary adjustments: assign <b>Geographical Role: Longitude</b> to the fields `start_lng` and `end_lng`.
 
 Go ahead and make the following diagrams for conducting descriptive analysis:
 
