@@ -247,7 +247,24 @@ most important insights. Use artistic principles including size, color, and shap
 #### PHASE 6: ACT
 #### =============
 
+## **How to turn casual cyclist to members**
 
+### **1. Make membership worthwhile for occasional leisure bicycle rides**
+
+- Create a membership option that is cheaper but restricts usage of bikes to weekends only.
+- Or restricts the usage for only specific stations (popular for leisure rides).
+- Enhance popularity of leisure bicycle ridings. (through advertising “good” cycling routes)
+- Create events for to increase frequency of leisure rides.
+
+### **2. Create increased incentive for using bicycle as a means of transport to and from work**
+
+### **3. Create motivation to cycle to work even when ride length is > 45 minutes**
+
+- Advertise health benefits of daily cycling, instead of other means of transport.
+- Enhance user experience for cycling to and from work
+- Create health apps that tracks user “sport” activity. To incentivise bike usage.
+- Create reward system that rewards cycling frequency and length
+- Convince casual riders that “their” long rides can be done on the weekdays and to/form work
 
 
 
