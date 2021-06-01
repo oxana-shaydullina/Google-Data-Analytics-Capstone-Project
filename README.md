@@ -231,7 +231,7 @@ END
 #### PHASE 5: SHARE
 #### ===============
 
-Now create sophisticated and polished [viz]() to share the findings. 
+Now create sophisticated and polished [viz](https://public.tableau.com/app/profile/oxana.shaydullina/viz/HowdoannualmembersandcasualridersuseCyclisticbikesdifferently/HowdoannualmembersandcasualridersuseCyclisticbikesdifferently) to share the findings. 
 
 Follow these steps:
 
