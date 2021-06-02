@@ -257,7 +257,7 @@ Based on the above data analysis, here are the top 3 recommendations to the stak
 - Enhance user experience for riding to and from work
 - Create a health app that tracks user “sport” activity to incentivize bike usage
 
-## 3. Create motivation for both annual members and casual riders to use bikes even when ride length is more than 1 hour:
+## 3. Motivate both annual members and casual riders to use bikes even when ride length is more than 1 hour:
 
 - Create a reward system that rewards cycling frequency and length
 - Convince casual riders that they can do their long rides on the weekdays and to and from work
