@@ -1,4 +1,4 @@
-This analysis is the [Case Study: 'How Does a Bike-Share Navigate Speedy Success?'](https://github.com/oxana-shaydullina/Google-Data-Analytics-Capstone-Project/blob/main/Google%20DA%20C8%20_%20Case%20Study%201.pdf) from the [Google Data Analytics Certificate](http://grow.google/dataanalytics/), originally based on the case study ['Sophisticated, Clear, and Polished’: Divvy and Data Visualization](https://artscience.blog/home/divvy-dataviz-case-study) by Kevin Hartman.
+This analysis is the [Case Study: ‘How Does a Bike-Share Navigate Speedy Success?‘](https://github.com/oxana-shaydullina/Google-Data-Analytics-Capstone-Project/blob/main/Google%20DA%20C8%20_%20Case%20Study%201.pdf) from the [Google Data Analytics Certificate](http://grow.google/dataanalytics/), originally based on the case study [‘Sophisticated, Clear, and Polished‘: Divvy and Data Visualization](https://artscience.blog/home/divvy-dataviz-case-study) by Kevin Hartman.
 
 ## Scenario
 I am a junior data analyst working in the marketing analyst team at Cyclistic, a fictional bike-share company in Chicago. The director of marketing, Lily Moreno, believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. The team will design a new marketing strategy to convert casual riders into annual members from these insights. But first, Cyclistic executives must approve my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
@@ -21,9 +21,7 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
 
 <b>Three questions will guide the future marketing program</b>:
 
-1. How do annual members and casual riders use Cyclistic bikes dierently?
-
-2. Why would casual riders buy Cyclistic annual memberships?
+1. How do annual members and casual riders use Cyclistic bikes differently?
 
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
@@ -69,7 +67,7 @@ There are more than 1 million rows in total; therefore, Excel/Google Sheets are 
 
 So the choices of the tool are between R and Tableau. While R is excellent for comprehensive data analysis, Tableau Desktop is much easier to process and analyze, especially with Prep Builder. It also produces the most compelling and sophisticated vizzes.
 
-Let’s rock that data! 🚀
+Let’s rock that data!  🚀
 
 ## Wrangle data and combine it into a single file
 
@@ -197,29 +195,27 @@ Open the dataset in Tableau desktop.
 
 Double check the dataset and make necessary adjustments: assign <b>Geographical Role: Longitude</b> to the fields `start_lng` and `end_lng`.
 
-Go ahead and make the following diagrams for conducting descriptive analysis:
+Go ahead and make the following diagrams for conducting descriptive analysis, every for members vs. casual riders:
 
-- Calculate the average ride duration for members vs casual riders by day of week
-- Calculate the average ride duration for members vs casual riders by month
-- Calculate the number of rides for members vs casual riders by day of week
-- Calculate the number of rides for members vs casual riders by month
-- Explore different seasons to make some initial observations
-- Group the rides into six bins using the below formula to add a calculated field for analyzing the trip duration distribution: 
+- Average ride duration by day of week
+- Number of rides by the time of the day
+- Number of rides vs. ride duration distribution
+- Number of rides by weekday and month
+- Bike types
+- Bike types usage by weekdays 
+- Bike types through years
+- Top 5 Routes
+- Who rode faster?
+- Who took more rides?
+- Who travelled longer?
+- Who travelled further?
 
-```
-IF [Trip Duration In Min] < 5 THEN "<5 Min"
-    ELSEIF [Trip Duration In Min] < 15 THEN "<15 Min"
-    ELSEIF [Trip Duration In Min] < 30 THEN "<30 Min" 
-    ELSEIF [Trip Duration In Min] < 60 THEN "<1 Hours" 
-    ELSEIF [Trip Duration In Hrs] < 2 THEN "<2 Hours" 
-    ELSEIF [Trip Duration In Hrs] < 5 THEN "<5 Hours" 
-    ELSE ">5 Hours" 
-END
-```
-- 
+## Key Findings
 
-
-
+- 70% of riders are already annual members, and 30% are casual riders — there is a potential to convert them into registered members
+- Annual members tend to use the bike for commuting, which is consistent with the standard start and end working hours; casual riders tend to use it for leisure, especially during the weekend, with more rides and longer duration
+- Majority of the rides are between 15 minutes and 1 hour
+- More than 75% of rentals are docked & classic bikes — the best cost vs. quality choice, meanwhile electric bikes is the last choice due to its higher per minute charge
 
 
 #### ===============
@@ -242,28 +238,39 @@ Follow these steps:
 
 6. Ensure your work is accessible.
 
+
 #### =============
 #### PHASE 6: ACT
 #### =============
 
-## **How to turn casual cyclist to members**
+Based on the above data analysis, here are the top 3 recommendations to the stakeholders:
 
-### **1. Make membership worthwhile for occasional leisure bicycle rides**
+## 1. Make membership worthwhile for casual riders:
 
-- Create a membership option that is cheaper but restricts usage of bikes to weekends only.
-- Or restricts the usage for only specific stations (popular for leisure rides).
-- Enhance popularity of leisure bicycle ridings. (through advertising “good” cycling routes)
-- Create events for to increase frequency of leisure rides.
+- Offer a weekend-only membership at a lower price to entice casual riders towards full annual membership (e.g., they can only unlock bikes on Friday, Saturday, or Sunday)
+- Enhance popularity of leisure bike rides through advertising nice cycling routes 
+- Create events around the leisure activities/locations to increase the frequency of leisure rides
 
-### **2. Create increased incentive for using bicycle as a means of transport to and from work**
+## 2. Create additional incentives for using bikes as a means of transport to and from work for annual members:
 
-### **3. Create motivation to cycle to work even when ride length is > 45 minutes**
+- Advertise health benefits of daily cycling, instead of other means of transport
+- Enhance user experience for riding to and from work
+- Create a health app that tracks user “sport” activity to incentivize bike usage
 
-- Advertise health benefits of daily cycling, instead of other means of transport.
-- Enhance user experience for cycling to and from work
-- Create health apps that tracks user “sport” activity. To incentivise bike usage.
-- Create reward system that rewards cycling frequency and length
-- Convince casual riders that “their” long rides can be done on the weekdays and to/form work
+## 3. Create motivation for both annual members and casual riders to use bikes even when ride length is more than 1 hour:
+
+- Create a reward system that rewards cycling frequency and length
+- Convince casual riders that they can do their long rides on the weekdays and to and from work
+- Offer discounts when the ride length exceeds 1 hour 
+
+## More points for the stakeholders’ consideration:
+
+1. Revise the profitability of electric bikes: the support might cost more than revenue due to the high cost per minute and, therefore, low popularity.
+2. The analytics team could use additional data to expand the findings:
+
+- Anonymized data of the participants (age, sex, location, physical condition) 
+- Data related to facilities and services offered at each bike station
+- Methods of payment for different types of riders for the bikes
 
 
 
